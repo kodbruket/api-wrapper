@@ -19,7 +19,7 @@ class Subscriber extends Api
      */
     public function create(array $subscriber)
     {
-        $defaults = ['language' => 'sv', 'update_on_duplicate' => true, 'tags' => [], 'automation' => false];
+        $defaults = ['language' => 'sv', 'update_on_duplicate' => true, 'tags' => [], 'automation' => false, 'require_opt_in' => true];
 
         $subscriber = array_merge($defaults, $subscriber);
 
@@ -27,6 +27,7 @@ class Subscriber extends Api
 
         $params = [
             'automation' => $subscriber['automation'],
+            'require_opt_in' => $subscriber['require_opt_in'],
             'update_on_duplicate' => $subscriber['update_on_duplicate'],
             'tags' => $subscriber['tags'],
             'subscribers' => $this->getSubscriberParams($subscriber)
@@ -53,7 +54,7 @@ class Subscriber extends Api
      */
     public function createMultiple(array $subscribers)
     {
-        $defaults = ['language' => 'sv', 'update_on_duplicate' => true, 'tags' => [], 'automation' => false];
+        $defaults = ['language' => 'sv', 'update_on_duplicate' => true, 'tags' => [], 'automation' => false, 'require_opt_in' => true];
 
         $subscribers = array_merge($defaults, $subscribers);
 
@@ -62,7 +63,8 @@ class Subscriber extends Api
         }
 
         $params = [
-            'automation' =>  $subscribers['automation'],
+            'automation' => $subscribers['automation'],
+            'require_opt_in' => $subscriber['require_opt_in'],
             'update_on_duplicate' => $subscribers['update_on_duplicate'],
             'tags' => $subscribers['tags']
         ];
